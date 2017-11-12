@@ -1,0 +1,79 @@
+{% load static %}
+<html>
+<head>
+<title>
+		welcome {{user}}
+</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="{% static 'mycalendar/fullcalendar.min.js' %}">	</script>   
+<link rel="stylesheet" type="text/css" href="{% static 'mycalendar/fullcalendar.min.css' %}" />
+<script src="{% static 'mycalendar/lib/jquery-ui.min.js' %}"></script>
+<script src="{% static 'mycalendar/lib/jquery.min.js' %}"></script>
+<script src="{% static 'mycalendar/lib/moment.min.js' %}"></script>
+<script src="{% static 'mycalendar/lib/fullcalendar.js' %}"></script>
+
+
+<style>
+
+body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+</style>
+
+
+
+
+</head>
+<body>
+<h2 align="left"> Welcome {{user}} 
+<span style="float:right"> <button class="btn btn-info" onclick="window.location.href='/logout/'">logout</button></span> </h2>
+<hr>
+<button onclick="goBack()">Back</button>
+<div align="center">
+Active links <br>
+<table>
+
+<th><li><a href= '{% url "updatEmployee" %}'>CRUD Operations</a></li></th>
+<th><li><a href= ''>Plan Activity</a></li></th>
+<th><li><a href= '{% url "listing" %}'>Paginations example</a></li></th>
+</table>
+</div>
+<br><br>
+
+<div id='calendar'></div>
+
+
+
+
+
+<script>
+	$(document).ready(function() {
+		var my_event = [] 
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			editable: false,
+			events: my_event
+		});
+	});
+
+</script>
+
+</body>
+</html>
+
+

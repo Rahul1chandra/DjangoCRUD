@@ -1,0 +1,115 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+  body{
+  background-color:#c0cdd1;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+    $("h2").on("click", function(){
+        $(this).css("background-color", "red");
+    });
+});
+
+
+$(document).ready(function(){
+$("input").focus(function(){
+      $(this).css("background-color", "#cccccc");
+    });
+
+$("input").blur(function(){
+        $(this).css("background-color", "#ffffff");
+});
+
+});
+
+</script>
+
+</head>
+<h3> {{user}} </h3>
+
+<button onclick='window.location.href="/"'>HOME </button>
+<br>
+<h>Employee Record</h>
+
+<!--Add implementations Starts-->
+<form role="form" method="post" action="{% url 'updatEmployee' %}">
+    {% csrf_token %}
+    emp_name : {{form.emp_name}}
+    emp_emailid : {{form.emp_emailid}}
+    emp_phn : {{form.emp_phn}}
+    <br>
+<button type="submit">Save Record </button>
+</form>
+<!--Add implementations Ends-->
+
+<hr><br>
+<h2 align="center" id="data">Employee Record Details </h2>
+<table border="2" align="center">
+    <tr>
+        <th>Employee Name </th>
+        <th>Employee ID </th>
+        <th>Employee Phone NO </th>
+        <th>Employee Email-id</th>
+        <th> Delete record </th>
+        <th> update record </th>
+    </tr>
+
+<!--Read Data -->
+{% for list in details %}
+<tr>
+    <td> {{list.emp_name}}</td>
+    <td> {{list.emp_id}}</td>
+    <td> {{list.emp_phn}}</td>
+    <td> {{list.emp_emailid}} </td>
+    <td><a href="/deleterecord/{{list.pk}}/"> delete</a></td>
+    <td><button onclick="update({{list.pk}})"> Update Record </button></td>
+<script>
+      function update(id)
+      {
+               var retVal = confirm("Do you want to continue  ?");
+               if( retVal == true ){
+                  window.location = '/updaterecord/'+id+'/';
+                  return true;
+               }
+               else{
+                  return false;
+               }
+      };
+
+function call(){
+  window.location.href="/";
+};
+
+
+
+
+</script>
+</tr>
+    {%endfor%}
+</table>
+<a href="/deleterecord/all/"> delete all </a>
+
+<hr>
+<br>
+
+<!--<script>-->
+    <!--function update(pk, name, mailid){-->
+            <!--console.log(pk);-->
+            <!--var name = prompt("Please enter your update name", name);-->
+            <!--var mail = prompt("Please enter your update mailid", mailid);-->
+            <!--console.log(name);-->
+            <!--console.log(mail);-->
+            <!--document.location.href ="/updaterecord/"+pk+"/"+name+"/"+mail;-->
+
+<!--};-->
+<!--</script>-->
+
+</html>
+
+

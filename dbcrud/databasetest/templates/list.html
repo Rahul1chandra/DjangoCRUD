@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of places</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<button onclick=' window.location.href="/" '>back</button>
+<hr>
+{% for contact in contacts %}
+    {{ contact.name }}<br/>
+    {{ contact.address }}<br/>
+<hr>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+            <span class="current">
+                Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+            </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+<div align="center">
+{% if contacts.has_other_pages %}
+  <ul class="pagination">
+    {% if contacts.has_previous %}
+      <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+
+      {% for i in contacts.paginator.page_range %}
+              {% if contacts.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+      {% endfor %}
+
+    {% if contacts.has_next %}
+      <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+
+<scrip>
+  <script>
+function goBack() {
+    window.history.back();
+}
+</script>
+</scrip>
+
+</body>
+</html>

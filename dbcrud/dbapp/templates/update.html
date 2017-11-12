@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Update</title>
+</head>
+<body onload = "script();">
+<h3>{{user}}</h3>
+<form role="form" method="post" action=".">
+    {% csrf_token %}
+    emp_name : {{form.emp_name}}
+    emp_emailid : {{form.emp_emailid}}
+    emp_phn : {{form.emp_phn}}
+    <br>
+<button type="submit">update Record </button>
+
+</form>
+<script>
+function script(){
+        document.getElementById("id_emp_name").value = "{{details.emp_name}}";
+        document.getElementById("id_emp_emailid").value = "{{details.emp_emailid}}";
+        document.getElementById("id_emp_phn").value = "{{details.emp_phn}}";
+    }
+</script>
+
+
+
+
+
+</body>
+</html>

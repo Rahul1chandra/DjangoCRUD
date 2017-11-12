@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up forms</title>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+  
+<script src="{% static 'jquery-3.2.1.min.js' %}"></script>   
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+	
+</head>
+<body>
+<body>
+  <div class="signup__container">
+  <div class="">
+    
+    <div class="thumbnail__content text-center">
+      <h1 style="color:blue">Register New User </h1>
+      <h1 style="color:blue" class="heading--primary">Sign up</h1>
+      <h2 style="color:blue" class="heading--secondary">Are you ready to join US?</h2>
+   		 			
+    </div>    
+  </div>
+
+
+		
+		<form id="form" method="post" action="{% url 'signup' %}">
+		    {% csrf_token %}
+<div class="form-group">
+    <label for="username"><span style="color:blue">Username</span></label>
+   <span class="form-control" type="text" name="username" id="username" required>{{form.username}} </span>
+</div>
+
+
+<div class="form-group">
+        <label for="password"><span style="color:blue">First Name</span></label>
+        <span class="form-control" type="password" name="password" id="password" placeholder="********" required> {{form.first_name}} </span>
+</div>
+
+
+<div class="form-group">
+        <label for="password"><span style="color:blue">Last Name</span></label>
+        <span class="form-control" type="password" name="password" id="password" placeholder="********" required> {{form.last_name}} </span>
+</div>
+
+
+
+
+<div class="form-group">
+        <label for="email"><span style="color:blue">Email</span></label>
+        <span class="form-control" type="text" name="email" id="email" required >  {{form.email}} </span>
+</div>
+
+<div class="form-group">
+        <label for="password"><span style="color:blue"> Password</span></label>
+        <span class="form-control" type="password" name="password" id="password" required> {{form.password}} </span>
+</div>
+
+
+<div>
+        <ul class="list-inline">
+          <li>
+            <input class="btn btn--form" type="submit" value="Register" />
+            <button class="btn btn--form" type="reset" value="Reset">Reset</button>
+          	<button  class="btn btn--form" onclick="location.href='/';">Login</button>
+          </li>
+          
+        </ul>
+</div>
+
+		</form>
+
+		{% if error %}
+		<h3> {{error}} </h3>
+		{% endif %}
+
+
+		{% if success %}
+		<h3 style="color:green"> {{success}} </h3>
+		<h3> <a href="/">Login</a> </h3>
+		{% endif %}
+</div>
+ </div>
+
+ 
+
+
+
+</body>
+</html>

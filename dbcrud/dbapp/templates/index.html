@@ -1,0 +1,54 @@
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+</head>
+<style type="text/css">
+#container_id{
+  width:50%;
+  height:60%;
+  padding-left: 350;
+}
+.container{
+float:right;
+
+}
+#myform {
+    width: 300px;
+    margin: 0 auto;
+}
+</style>
+
+<body>
+<h2 align="center"><marquee behavior="alternate">CRUD Basic -Login Forms</marquee> </h2>
+<div id="container_id">
+            <form action= "/"  method="post">
+            {% csrf_token %}
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="submit" value="Submit">
+            </form>
+        
+        <div id="signup">
+          <button onclick="window.location.href='/signup/'">Signup</button>
+        </div>
+</div>
+<div align="center">
+{%if status%} 
+  <h3 style="color:red;">{{status}}</h3>
+{%endif%}
+</div>
+
+<br>
+<hr>
+<div align="center">
+
+<h1>:: Contact ME:: </h1>
+    <h2>{{name}}</h2>
+    <h2>{{email}}</h2>
+
+</div>
+</body>
+</html>
