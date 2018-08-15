@@ -1,4 +1,4 @@
-# DjangoCRUD
+# DjangoCRUD Operations 
 
 This project contains Django project
 Includes :- 
